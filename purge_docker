@@ -1,0 +1,13 @@
+containers=$(docker ps -a | grep 'Exited' | awk '{print $1}')
+images=$(docker images | grep '<none>' | awk '{print $3}')
+
+echo "Removing zombie containers"
+for i in $containers;do echo $i; docker rm $i; done
+echo "Removing zombie images"
+for i in $images;do echo $i; docker rmi $i ; done
+
+echo "Running ps -a"
+docker ps -a
+echo "Running images"
+docker images
+
