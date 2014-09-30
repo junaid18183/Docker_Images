@@ -23,12 +23,11 @@ RUN curl -L https://get.rvm.io | bash -s stable
 
 RUN echo "source /usr/local/rvm/scripts/rvm" >> /etc/bash.bashrc
 
+#Make rvm available to all users 
+RUN /bin/bash -l -c 'rvm user all'
+
 # Install package dependencies
 RUN /bin/bash -l -c 'rvm requirements'
-
-#Make rvm available to all users 
-
-RUN /bin/bash -l -c 'rvm user all'
 
 # Install ruby
 RUN /bin/bash -l -c 'rvm install 2.1.2'
